@@ -1,0 +1,30 @@
+Bakery app verification - 23 November 2026
+
+10 regression tests: PASS.
+All mutations were made on temporary copies of bakery.db.
+
+Checked: initial 13 orders ($1,960); repeat import; manual acceptance;
+restart persistence; two-day notice; cancellations releasing hours;
+quantity changes using the difference; duplicate/late helper rejection;
+sequential batch capacity; preview without writes; load-before-advance;
+all 25 messages; all pickups through Dec 1.
+
+No-helper scenario:
+13 new orders accepted, 9 requests rejected, 3 changes/cancellations applied.
+24 picked-up orders, 2 cancelled order records.
+Fulfilled sales $3,640; helper costs $0. Capacity never exceeds 8 hours.
+
+Helpers booked for Friday and Saturday:
+Fulfilled sales $4,080; helper costs $200.
+Capacity never exceeds 12 hours on helper days or 8 hours on other days.
+These are verification scenarios, not an optimal helper schedule claim.
+
+Browser test on a temporary database, port 8011:
+Loaded Monday; late Okafor request had Accept disabled.
+Previewed and confirmed end of Monday; Tuesday appeared with $2,200
+confirmed value and $280 fulfilled sales. Fetched Tuesday; Brown was
+cancelled, value fell to $2,120, and Park was blocked for insufficient hours.
+Reviewed layout and request/action labels. Reordered requests oldest first
+to match batch processing and clarified dozen units in the activity log.
+
+The delivered bakery.db remains at Monday before loading any messages.
